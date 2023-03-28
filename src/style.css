@@ -18,7 +18,6 @@ body {
   gap: 0;
   align-items: center;
   text-align: left;
-  min-height: 300px;
 }
 
 .title {
@@ -65,4 +64,7 @@ body {
   cursor: pointer;
   width: 480px;
   height: 60px;
+  /* display: flex; */
+  position: relative;
+  margin-top: 10px;
 }
