@@ -64,7 +64,6 @@ body {
   cursor: pointer;
   width: 480px;
   height: 60px;
-  /* display: flex; */
   position: relative;
   margin-top: 10px;
 }
