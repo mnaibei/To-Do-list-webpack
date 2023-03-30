@@ -58,6 +58,11 @@ body {
   margin: 10px;
 }
 
+.checkbox:checked + label {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .clear-task {
   border: none;
   outline: 0;
