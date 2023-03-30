@@ -3,15 +3,19 @@ import { clearCompletedTasks, addTask } from './modules/tasks.js';
 import { displayTasks } from './modules/display.js';
 import './style.css';
 
+// calling DOM
 const tasksContainer = document.querySelector('.displayTasks');
 const inputField = document.querySelector('.taskInput');
 const formField = document.querySelector('#task');
 const clearBtn = document.querySelector('.clear-task');
 
+// getting tasks from local storage
 let tasks = getTasksFromStorage();
 
+// displaying tasks
 displayTasks(tasks, tasksContainer);
 
+// adding tasks
 formField.addEventListener('submit', (e) => {
   e.preventDefault();
   addTask(tasks, inputField.value);
@@ -20,6 +24,7 @@ formField.addEventListener('submit', (e) => {
   inputField.value = '';
 });
 
+// clearing completed tasks
 clearBtn.addEventListener('click', () => {
   tasks = clearCompletedTasks(tasks);
   setTasksToStorage(tasks);

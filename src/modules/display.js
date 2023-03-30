@@ -1,4 +1,4 @@
-import { toggle } from './tasks.js';
+import { toggle, inlineEditTask } from './tasks.js';
 import { setTasksToStorage } from './storage.js';
 
 /* eslint-disable import/prefer-default-export */
@@ -12,6 +12,21 @@ export const displayTasks = (tasks, container) => {
       toggle(tasks, task.id);
       setTasksToStorage(tasks);
       displayTasks(tasks, container);
+    });
+
+    // edit task description
+    const liLabel = li.querySelector('label');
+    liLabel.setAttribute('contenteditable', 'true');
+    liLabel.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        liLabel.blur();
+      }
+    });
+    liLabel.addEventListener('blur', () => {
+      const newDesc = liLabel.innerText;
+      inlineEditTask(tasks, task.id, newDesc);
+      setTasksToStorage();
     });
 
     const separator = document.createElement('hr');
