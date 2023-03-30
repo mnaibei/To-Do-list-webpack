@@ -72,3 +72,22 @@ body {
   position: relative;
   margin-top: 10px;
 }
+
+.description {
+  width: 90%;
+  border: none;
+}
+
+.del {
+  margin-left: 20px;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.del:hover {
+  color: white;
+  background-color: red;
+}
