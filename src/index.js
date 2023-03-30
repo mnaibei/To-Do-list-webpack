@@ -1,37 +1,44 @@
+import { setTasksToStorage, getTasksFromStorage } from './modules/storage.js';
+import { clearCompletedTasks, addTask } from './modules/tasks.js';
+import { displayTasks } from './modules/display.js';
 import './style.css';
 
-const tasks = [
-  {
-    id: 1,
-    desc: 'Wash the dishes',
-    completed: false,
-  },
-  {
-    id: 2,
-    desc: 'Do the laundry',
-    completed: false,
-  },
-  {
-    id: 3,
-    desc: 'Take out the trash',
-    completed: false,
-  },
-];
+// calling DOM
+const tasksContainer = document.querySelector('.displayTasks');
+const inputField = document.querySelector('.taskInput');
+const formField = document.querySelector('#task');
+const clearBtn = document.querySelector('.clear-task');
+const deleteBtn = document.querySelector('.displayTasks');
 
-const displayTasks = () => {
-  tasks.forEach((task) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<input type="checkbox" class="checkbox ${task.completed ? 'completed' : ''}" id="task-${task.id}" ${task.completed ? 'checked' : ''}><label for="task-${task.id}">${task.desc}</label>`;
-    const separator = document.createElement('hr');
-    li.dataset.id = task.id;
-    if (task.completed) {
-      li.classList.add('completed');
-    }
-    document.querySelector('.displayTasks').appendChild(li);
-    document.querySelector('.displayTasks').appendChild(separator);
-  });
-};
+// getting tasks from local storage
+let tasks = getTasksFromStorage();
 
-window.addEventListener('load', () => {
-  displayTasks();
+// displaying tasks
+displayTasks(tasks, tasksContainer);
+
+// adding tasks
+formField.addEventListener('submit', (e) => {
+  e.preventDefault();
+  addTask(tasks, inputField.value);
+  setTasksToStorage(tasks);
+  displayTasks(tasks, tasksContainer);
+  inputField.value = '';
+});
+
+// clearing completed tasks
+clearBtn.addEventListener('click', () => {
+  tasks = clearCompletedTasks(tasks);
+  setTasksToStorage(tasks);
+  displayTasks(tasks, tasksContainer);
+});
+
+deleteBtn.addEventListener('click', (e) => {
+  if (e.target.classList.contains('del')) {
+    tasks = tasks.filter((task) => task.id !== Number(e.target.dataset.index));
+    tasks = tasks.map((task, id) => ({
+      ...task, id: id + 1,
+    }));
+    setTasksToStorage(tasks);
+    displayTasks(tasks, tasksContainer);
+  }
 });

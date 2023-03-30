@@ -58,6 +58,11 @@ body {
   margin: 10px;
 }
 
+.checkbox:checked + label {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .clear-task {
   border: none;
   outline: 0;
@@ -66,4 +71,23 @@ body {
   height: 60px;
   position: relative;
   margin-top: 10px;
+}
+
+.description {
+  width: 90%;
+  border: none;
+}
+
+.del {
+  margin-left: 20px;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.del:hover {
+  color: white;
+  background-color: red;
 }
