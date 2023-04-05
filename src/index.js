@@ -1,5 +1,5 @@
 import { setTasksToStorage, getTasksFromStorage } from './modules/storage.js';
-import { clearCompletedTasks, addTask } from './modules/tasks.js';
+import { clearCompletedTasks, addTask, removeIndividualTasks } from './modules/tasks.js';
 import { displayTasks } from './modules/display.js';
 import './style.css';
 
@@ -34,10 +34,12 @@ clearBtn.addEventListener('click', () => {
 
 deleteBtn.addEventListener('click', (e) => {
   if (e.target.classList.contains('del')) {
-    tasks = tasks.filter((task) => task.id !== Number(e.target.dataset.index));
-    tasks = tasks.map((task, id) => ({
-      ...task, id: id + 1,
-    }));
+    // tasks = tasks.filter((task) => task.id !== Number(e.target.dataset.index));
+    // console.log('Delete caller', e.target.dataset.index)
+    // tasks = tasks.map((task, id) => ({
+    //   ...task, id: id + 1,
+    // }));
+    tasks = removeIndividualTasks(tasks, e.target.dataset.index);
     setTasksToStorage(tasks);
     displayTasks(tasks, tasksContainer);
   }

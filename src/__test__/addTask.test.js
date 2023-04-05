@@ -40,7 +40,7 @@ describe("add task tests", () => {
     newTask.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.keyCode === 13) {
         addTask(tasks, newTask.value);
-        displayTasks(tasks, tasksContainer);
+        displayTasks(tasks, tasksContainer); 
       }
     });
 
