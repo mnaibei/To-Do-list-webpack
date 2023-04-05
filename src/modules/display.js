@@ -9,6 +9,8 @@ export const displayTasks = (tasks, container) => {
     li.innerHTML = `<input type="checkbox" class="checkbox ${task.completed ? 'completed' : ''}" id="task-${task.id}" ${task.completed ? 'checked' : ''}>
     <input class="description" id="${task.id}" value="${task.desc}"></input>
     <button class="del" data-index="${task.id}">Delete</button>`;
+
+    //checkbox listener and toggler
     const liInput = li.querySelector('input[type="checkbox"]');
     liInput.addEventListener('click', () => {
       toggle(tasks, task.id);
@@ -18,7 +20,6 @@ export const displayTasks = (tasks, container) => {
 
     // edit task description
     const liLabel = li.querySelector('.description');
-
     liLabel.addEventListener('change', (e) => {
       let tasks = getTasksFromStorage();
       tasks = tasks.map((task, i) => {
@@ -32,10 +33,14 @@ export const displayTasks = (tasks, container) => {
     });
 
     const separator = document.createElement('hr');
+
+    //add 'completed' to task li marked complete
     li.dataset.id = task.id;
     if (task.completed) {
       li.classList.add('completed');
     }
+
+    //append to DOM
     container.appendChild(li);
     container.appendChild(separator);
   });

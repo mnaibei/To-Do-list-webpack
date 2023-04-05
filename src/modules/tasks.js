@@ -20,7 +20,7 @@ export const addTask = (tasks, taskDesc) => {
   tasks.push(task);
 };
 
-// edit task description
+// edit task description-old
 export const inlineEditTask = (tasks, id, newDesc) => {
   const taskIndex = tasks.findIndex((task) => task.id === Number(id));
   if (taskIndex !== -1) {
