@@ -10,6 +10,14 @@ export const toggle = (tasks, id) => {
 // clear completed tasks
 export const clearCompletedTasks = (tasks) => tasks.filter((task) => task.completed === false);
 
+// remove individual tasks
+export const removeIndividualTasks = (tasks, index) => {
+  tasks = tasks.filter((task) => task.id !== Number(index)).map((task, id) => ({
+    ...task, id: id + 1,
+  }));
+  return tasks;
+};
+
 // add task to tasks array
 export const addTask = (tasks, taskDesc) => {
   const task = {
@@ -20,7 +28,7 @@ export const addTask = (tasks, taskDesc) => {
   tasks.push(task);
 };
 
-// edit task description
+// edit task description-old
 export const inlineEditTask = (tasks, id, newDesc) => {
   const taskIndex = tasks.findIndex((task) => task.id === Number(id));
   if (taskIndex !== -1) {
