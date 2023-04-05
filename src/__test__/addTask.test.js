@@ -13,13 +13,25 @@ describe("add task tests", () => {
     // Create a tasks array and call the addTask function
     const tasks = [];
     const taskDesc = 'New Task';
+    addTask(tasks, taskDesc);
 
+    // Check if a new task was added to the tasks array
+    expect(tasks).toHaveLength(1);
+    expect(tasks[0].desc).toBe(taskDesc);
+    expect(tasks[0].completed).toBe(false);
+    expect(tasks[0].id).toBe(1);
+
+  });
+
+  test('display on DOM', () => {
     document.body.innerHTML = `<form class="todo" action="" id="task">
     <input type="text" name="task" class="taskInput" placeholder="Add to your list">
-  </form>
-  <div class="displayTasks">
-  </div>`;
+    </form>
+    <div class="displayTasks">
+    </div>`;
 
+    const tasks = [];
+    const taskDesc = 'New Task';
     const tasksContainer = document.querySelector(".displayTasks");
 
     const newTask = document.querySelector(".taskInput");
@@ -38,12 +50,6 @@ describe("add task tests", () => {
       keyCode: 13,
     });
     newTask.dispatchEvent(enter);
-
-    // Check if a new task was added to the tasks array
-    expect(tasks).toHaveLength(1);
-    expect(tasks[0].desc).toBe(taskDesc);
-    expect(tasks[0].completed).toBe(false);
-    expect(tasks[0].id).toBe(1);
     expect(tasksContainer.getElementsByTagName('li').length).toBe(1);
-  });
+  })
 });
