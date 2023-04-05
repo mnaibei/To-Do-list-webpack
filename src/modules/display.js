@@ -10,7 +10,7 @@ export const displayTasks = (tasks, container) => {
     <input class="description" id="${task.id}" value="${task.desc}"></input>
     <button class="del" data-index="${task.id}">Delete</button>`;
 
-    //checkbox listener and toggler
+    // checkbox listener and toggler
     const liInput = li.querySelector('input[type="checkbox"]');
     liInput.addEventListener('click', () => {
       toggle(tasks, task.id);
@@ -34,13 +34,13 @@ export const displayTasks = (tasks, container) => {
 
     const separator = document.createElement('hr');
 
-    //add 'completed' to task li marked complete
+    // add 'completed' to task li marked complete
     li.dataset.id = task.id;
     if (task.completed) {
       li.classList.add('completed');
     }
 
-    //append to DOM
+    // append to DOM
     container.appendChild(li);
     container.appendChild(separator);
   });

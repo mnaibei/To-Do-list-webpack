@@ -10,7 +10,7 @@ export const toggle = (tasks, id) => {
 // clear completed tasks
 export const clearCompletedTasks = (tasks) => tasks.filter((task) => task.completed === false);
 
-//remove individual tasks
+// remove individual tasks
 export const removeIndividualTasks = (tasks, index) => {
   tasks = tasks.filter((task) => task.id !== Number(index)).map((task, id) => ({
     ...task, id: id + 1,
