@@ -4,9 +4,6 @@
 
 import { displayTasks } from '../modules/display.js';
 import { addTask } from '../modules/tasks.js';
-// import addTaskMock from "../__mock__/addTaskMock.js";
-
-// jest.mock("../modules/tasks.js");
 
 describe('add task tests', () => {
   test('addTask adds a task to the tasks array', () => {

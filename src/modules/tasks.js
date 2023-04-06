@@ -1,3 +1,4 @@
+import { setTasksToStorage, getTasksFromStorage } from './storage.js';
 // toggle checkbox and return opposite value
 export const toggle = (tasks, id) => {
   tasks.forEach((task) => {
@@ -28,10 +29,15 @@ export const addTask = (tasks, taskDesc) => {
   tasks.push(task);
 };
 
-// edit task description-old
-export const inlineEditTask = (tasks, id, newDesc) => {
-  const taskIndex = tasks.findIndex((task) => task.id === Number(id));
-  if (taskIndex !== -1) {
-    tasks[taskIndex].desc = newDesc;
-  }
+// edit task description
+export const editTask = (e) => {
+  let tasks = getTasksFromStorage();
+  tasks = tasks.map((task, i) => {
+    const temp = {};
+    temp.desc = e.target.id - 1 === i ? e.target.value : task.desc;
+    temp.completed = task.completed;
+    temp.id = task.id;
+    return temp;
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 };

@@ -1,4 +1,4 @@
-import { toggle } from './tasks.js';
+import { editTask, toggle } from './tasks.js';
 import { setTasksToStorage, getTasksFromStorage } from './storage.js';
 
 /* eslint-disable import/prefer-default-export */
@@ -20,16 +20,11 @@ export const displayTasks = (tasks, container) => {
 
     // edit task description
     const liLabel = li.querySelector('.description');
-    liLabel.addEventListener('change', (e) => {
+    liLabel.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.keyCode === 13) {
       let tasks = getTasksFromStorage();
-      tasks = tasks.map((task, i) => {
-        const temp = {};
-        temp.desc = e.target.id - 1 === i ? e.target.value : task.desc;
-        temp.completed = task.completed;
-        temp.id = task.id;
-        return temp;
-      });
-      localStorage.setItem('tasks', JSON.stringify(tasks));
+      tasks = editTask(e)
+      }
     });
 
     const separator = document.createElement('hr');
