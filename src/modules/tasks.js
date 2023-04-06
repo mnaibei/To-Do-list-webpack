@@ -13,9 +13,12 @@ export const clearCompletedTasks = (tasks) => tasks.filter((task) => task.comple
 
 // remove individual tasks
 export const removeIndividualTasks = (tasks, index) => {
-  tasks = tasks.filter((task) => task.id !== Number(index)).map((task, id) => ({
-    ...task, id: id + 1,
-  }));
+  tasks = tasks
+    .filter((task) => task.id !== Number(index))
+    .map((task, id) => ({
+      ...task,
+      id: id + 1,
+    }));
   return tasks;
 };
 
@@ -30,14 +33,20 @@ export const addTask = (tasks, taskDesc) => {
 };
 
 // edit task description
-export const editTask = (e) => {
-  let tasks = getTasksFromStorage();
+export const editTask = (id, value, tasks) => {
+  if (!tasks) {
+    tasks = getTasksFromStorage();
+  }
   tasks = tasks.map((task, i) => {
     const temp = {};
-    temp.desc = e.target.id - 1 === i ? e.target.value : task.desc;
+    temp.desc = id - 1 === i ? value : task.desc;
     temp.completed = task.completed;
     temp.id = task.id;
     return temp;
   });
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  if (!tasks) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  } else {
+    return tasks;
+  }
 };

@@ -22,8 +22,8 @@ export const displayTasks = (tasks, container) => {
     const liLabel = li.querySelector('.description');
     liLabel.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.keyCode === 13) {
-      let tasks = getTasksFromStorage();
-      tasks = editTask(e)
+        let tasks = getTasksFromStorage();
+        tasks = editTask(e.target.id, e.target.value);
       }
     });
 

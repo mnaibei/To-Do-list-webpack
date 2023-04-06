@@ -5,33 +5,40 @@ import { displayTasks } from '../modules/display.js';
 import { addTask, editTask } from '../modules/tasks.js';
 import { setTasksToStorage, getTasksFromStorage } from '../modules/storage.js';
 
-test('editing tasks', () => {
-    document.body.innerHTML = `<input class="description" id="1" value="Task 1"></input>`;
+describe('editing tasks tests', () => {
+  test('editTasks updates the array', () => {
+    // Create a tasks array and call the addTask function
+    let tasks = [];
+    const taskDesc = 'New Task';
+    addTask(tasks, taskDesc);
 
-    const newTask = document.querySelector('.description');
+    // Edit the task
+    tasks = editTask(1, 'New Edit', tasks);
 
-    newTask.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-          editTask( e );
-          setTasksToStorage(newTask.value)
-        }
-      });
+    // Check if a task has been edited
+    expect(tasks[0].desc).toBe('New Edit');
+    expect(tasks[0].desc).not.toBe('New Task');
+  });
 
-      newTask.value = "New Task";
+  test('editTasks updates the dom', () => {
+    let tasks = [];
+    const taskDesc = 'New Task';
+    addTask(tasks, taskDesc);
 
-    //   console.log(task)
+    document.body.innerHTML = `<div class="displayTasks">
+    <li data-id="${tasks[0].id}"><input type="checkbox" class="checkbox ${tasks[0].completed && 'completed'}" id="task-1" ${tasks[0].completed && 'checked'}>
+    <input class="description" id="${tasks[0].id}" value="${tasks[0].desc}">
+    <button class="del" data-index="${tasks[0].id}">Delete</button></li>
+    </div>`;
 
-      const enter = new KeyboardEvent('keydown', {
-        keyCode: 13,
-      });
-      newTask.dispatchEvent(enter);
+    // Edit the task
+    tasks = editTask(1, 'New Edit', tasks);
+    const tasksContainer = document.querySelector('.displayTasks');
+    displayTasks(tasks, tasksContainer);
 
-    let tasks = getTasksFromStorage(newTask.value)
-    console.log(tasks)
+    const editedTask = document.getElementById(`${tasks[0].id}`);
 
-    expect(tasks).toBe(newTask.value)
-})
-
-
-
-  
+    expect(editedTask.value).toBe('New Edit');
+    expect(editedTask.value).not.toBe('New Task');
+  });
+});
