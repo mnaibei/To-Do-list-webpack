@@ -1,4 +1,4 @@
-import { addTask, toggle } from '../modules/tasks';
+import { addTask, toggle } from '../modules/tasks.js';
 
 describe('Tests for completing tasks', () => {
   test('Check if toogle works', () => {

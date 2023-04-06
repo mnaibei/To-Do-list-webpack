@@ -1,5 +1,5 @@
 import { editTask, toggle } from './tasks.js';
-import { setTasksToStorage, getTasksFromStorage } from './storage.js';
+import { setTasksToStorage } from './storage.js';
 
 /* eslint-disable import/prefer-default-export */
 export const displayTasks = (tasks, container) => {
@@ -22,8 +22,7 @@ export const displayTasks = (tasks, container) => {
     const liLabel = li.querySelector('.description');
     liLabel.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.keyCode === 13) {
-        let tasks = getTasksFromStorage();
-        tasks = editTask(e.target.id, e.target.value);
+        editTask(e.target.id, e.target.value);
       }
     });
 

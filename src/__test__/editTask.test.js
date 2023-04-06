@@ -3,7 +3,6 @@
  */
 import { displayTasks } from '../modules/display.js';
 import { addTask, editTask } from '../modules/tasks.js';
-import { setTasksToStorage, getTasksFromStorage } from '../modules/storage.js';
 
 describe('editing tasks tests', () => {
   test('editTasks updates the array', () => {

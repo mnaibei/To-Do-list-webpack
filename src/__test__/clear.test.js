@@ -1,9 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-
-import { displayTasks } from '../modules/display';
-import { addTask, clearCompletedTasks, toggle } from '../modules/tasks';
+import { displayTasks } from '../modules/display.js';
+import { addTask, clearCompletedTasks, toggle } from '../modules/tasks.js';
 
 describe('Test for clearing completed', () => {
   test('Testing if clear removes from array', () => {

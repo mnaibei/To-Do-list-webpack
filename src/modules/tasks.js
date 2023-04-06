@@ -1,4 +1,4 @@
-import { setTasksToStorage, getTasksFromStorage } from './storage.js';
+import { getTasksFromStorage } from './storage.js';
 // toggle checkbox and return opposite value
 export const toggle = (tasks, id) => {
   tasks.forEach((task) => {
@@ -49,4 +49,5 @@ export const editTask = (id, value, tasks) => {
   } else {
     return tasks;
   }
+  return false;
 };
