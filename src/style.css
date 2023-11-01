@@ -76,10 +76,14 @@ body {
 .description {
   width: 90%;
   border: none;
+  padding: 2px;
+  margin: 3px;
 }
 
 .del {
   margin-left: 20px;
+  min-height: 30px;
+  width: 15%;
   cursor: pointer;
   border: none;
   position: relative;

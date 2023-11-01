@@ -1,6 +1,13 @@
-import { setTasksToStorage, getTasksFromStorage } from './modules/storage.js';
-import { clearCompletedTasks, addTask, removeIndividualTasks } from './modules/tasks.js';
-import { displayTasks } from './modules/display.js';
+import {
+  setTasksToStorage,
+  getTasksFromStorage,
+} from '../src/modules/storage.js';
+import {
+  clearCompletedTasks,
+  addTask,
+  removeIndividualTasks,
+} from '../src/modules/tasks.js';
+import { displayTasks } from '../src/modules/display.js';
 import './style.css';
 
 // calling DOM
