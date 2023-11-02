@@ -4,7 +4,6 @@ const storage_1 = require("./modules/storage");
 const display_1 = require("./modules/display");
 const tasks_1 = require("./modules/tasks");
 require("./style.css");
-const tasksContainer = document.querySelector(".displayTasks");
 const formField = document.querySelector("#task");
 const inputField = document.querySelector(".taskInput");
 const clearButton = document.querySelector(".clear-task");

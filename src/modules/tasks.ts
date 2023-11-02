@@ -1,4 +1,4 @@
-import { getTasksFromStorage, setTasksToStorage } from "./storage";
+import { setTasksToStorage } from "./storage";
 
 export const toggle = (tasks: any[], index: number): void => {
   tasks[index].done = !tasks[index].done;
@@ -24,7 +24,6 @@ export const addTask = (tasks: any[], task: string): any[] => {
 
 export const editTask = (tasks: any[], index: number, task: string): any[] => {
   tasks[index].task = task;
-  getTasksFromStorage();
   setTasksToStorage(tasks);
   return tasks;
 };

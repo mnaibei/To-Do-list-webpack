@@ -25,7 +25,6 @@ const displayTasks = (tasks) => {
         });
         taskText.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
-                console.log(taskText.value);
                 (0, tasks_1.editTask)(tasks, index, taskText.value);
                 (0, storage_1.setTasksToStorage)(tasks);
                 (0, exports.displayTasks)(tasks);
