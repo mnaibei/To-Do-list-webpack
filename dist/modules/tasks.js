@@ -26,7 +26,6 @@ const addTask = (tasks, task) => {
 exports.addTask = addTask;
 const editTask = (tasks, index, task) => {
     tasks[index].task = task;
-    (0, storage_1.getTasksFromStorage)();
     (0, storage_1.setTasksToStorage)(tasks);
     return tasks;
 };

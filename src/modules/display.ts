@@ -31,7 +31,6 @@ export const displayTasks = (tasks: any[]): void => {
 
     taskText.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        console.log(taskText.value);
         editTask(tasks, index, taskText.value as string);
         setTasksToStorage(tasks);
         displayTasks(tasks);

@@ -3,9 +3,6 @@ import { displayTasks } from "./modules/display";
 import { clearCompletedTasks, addTask } from "./modules/tasks";
 import "./style.css";
 
-const tasksContainer = document.querySelector(
-  ".displayTasks"
-) as HTMLDivElement;
 const formField = document.querySelector("#task") as HTMLFormElement;
 const inputField = document.querySelector(".taskInput") as HTMLInputElement;
 const clearButton = document.querySelector(".clear-task") as HTMLButtonElement;
